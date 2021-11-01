@@ -1,0 +1,28 @@
+org: tejnc
+app: notes
+service: notes
+
+frameworkVersion: '2'
+
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: python3.8
+  lambdaHashingVersion: 20201221
+
+plugins:
+  - serverless-offline
+
+# functions:
+#   add_note:
+#     handler: handler.add_note
+#     events: 
+#       - http:
+#           path: add
+#           method: post
+#           cors: true
+
+functions:
+  - ${file(functions/index.yml)}
+  - ${file(functions/users/index.yml)}
