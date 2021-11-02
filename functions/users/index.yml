@@ -5,3 +5,24 @@ add_user:
         path: register
         method: post 
         cors: true
+
+login:
+  handler: functions/users/login.login
+  events:
+    - http:
+        path: login
+        method: post 
+        cors: true
+        
+update:
+  handler: functions/users/update.update_user
+  events:
+    - http: 
+        path: user/update/{args}/{oid}
+        method: patch
+        request:
+          parameters: 
+            paths:
+              oid: true
+              args: true
+        cors: true

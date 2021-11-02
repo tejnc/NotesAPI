@@ -30,3 +30,40 @@ update_note_whole:
               paths:
                 oid: true
           cors: true
+
+delete:
+  handler: functions/notes/others.delete_note
+  events:
+    - http:
+        path: note/delete/{oid}
+        method: delete
+        request:
+          parameters:
+            paths:
+              oid: true
+        cors: true
+
+like:
+  handler: functions/notes/others.like_note
+  events: 
+    - http:
+        path: note/like/{oid}
+        method: get
+        request: 
+          parameters:
+            paths:
+              oid: true
+        cors: true
+
+
+comment:
+  handler: functions/notes/others.comment_note
+  events:
+    - http:
+        path: note/comment/{oid}
+        method: patch
+        request:
+          parameters:
+            paths:
+              oid: true
+        cors: true

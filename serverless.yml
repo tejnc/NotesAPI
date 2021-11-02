@@ -24,5 +24,5 @@ plugins:
 #           cors: true
 
 functions:
-  - ${file(functions/index.yml)}
   - ${file(functions/users/index.yml)}
+  - ${file(functions/notes/index.yml)}
