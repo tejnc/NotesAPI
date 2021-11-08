@@ -18,11 +18,10 @@ update:
   handler: functions/users/update.update_user
   events:
     - http: 
-        path: update/user/{args}/{oid}
+        path: update/user/{oid}
         method: patch
         request:
           parameters: 
             paths:
               oid: true
-              args: true
         cors: true

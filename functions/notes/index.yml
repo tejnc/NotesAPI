@@ -7,29 +7,16 @@ add_note:
         cors: true
 
 update_note:
-  handler: functions/notes/update.update_note
+  handler: functions/notes/update_notes.update_note
   events:
     - http:
-        path: update/note/{args}/{oid}
+        path: update/note/{oid}
         method: patch
         request:
           parameters:
             paths:
               oid: true
-              args: true
         cors: true
-
-update_note_whole:
-  handler: functions/notes/add/update.update_note_whole
-  events:
-      - http:
-          path: update/note/{oid}
-          method: patch
-          request:
-            parameters:
-              paths:
-                oid: true
-          cors: true
 
 delete:
   handler: functions/notes/others.delete_note

@@ -1,34 +1,33 @@
 import datetime
-from json import loads, dumps
+from json import dumps, loads
 
 from models.notes_model import Notes
 from utils.mongo import db_config
 
 
-
-def delete_note(event,context):
+def delete_note(event, context):
     _id = event["pathParameters"]["oid"]
 
     db_config()
 
     selected_note = Notes.objects(id=_id)
     selected_note.delete()
-    return dumps({"message":"Note deleted successfully."})
+    return dumps({"message": "Note deleted successfully."})
 
-def like_note(event,context):
+
+def like_note(event, context):
     _id = event["pathParameters"]["oid"]
-    
+
     db_config()
     selected_note = Notes.objects.get(id=_id)
 
     like_count = selected_note["likes"]
     like_count = like_count + 1
-    selected_note.update(
-        set__likes = like_count
-    )
-    return dumps({"message":"like added"})
+    selected_note.update(set__likes=like_count)
+    return dumps({"message": "like added"})
 
-def comment_note(event,context):
+
+def comment_note(event, context):
     _id = event["pathParameters"]["oid"]
 
     body = loads(event["body"])
@@ -38,11 +37,12 @@ def comment_note(event,context):
 
     db_config()
     selected_note = Notes.objects.get(id=_id)
-    selected_note.update(push__comments = [
-        _comments_stated,
-        _comments_by,
-        _comments_date,
-    ])
-    
+    selected_note.update(
+        push__comments=[
+            _comments_stated,
+            _comments_by,
+            _comments_date,
+        ]
+    )
 
-    return dumps({"message":"Comment added"})
+    return dumps({"message": "Comment added"})

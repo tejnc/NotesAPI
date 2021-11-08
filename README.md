@@ -10,12 +10,14 @@
         c. status  (pending,completed, incomplete)
 
 2. For updating notes
-    api address: `<server-address>/dev/update/note/{args}/{oid}`
-    where oid is the ObjectId of note, and args can be:-
+    - api address: `<server-address>/dev/update/note/{oid}`
+    where oid is the ObjectId of note,
+
+    - And body parameters can be;
     - title or status or description 
 
-    Method is PATCH
-    And the body parameters are as per the args chosen
+    - Method is PATCH
+    
 
 3. For updating the whole note
     api address: `<server-address>/dev/update/note/{oid}`
